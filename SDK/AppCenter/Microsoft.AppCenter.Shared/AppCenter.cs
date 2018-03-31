@@ -154,6 +154,18 @@ namespace Microsoft.AppCenter
             PlatformStart(appSecret, services);
         }
 
+
+        /// <summary>
+        ///     Initialize the SDK with the list of services to start.
+        ///     This may be called only once per application process lifetime.
+        /// </summary>
+        /// <param name="appSecret">A unique and secret key used to identify the application.</param>
+        /// <param name="services">List of services to use.</param>
+        public static void Start(string appSecret, string basePath, params Type[] services)
+        {
+            PlatformStart(appSecret, basePath, services);
+        }
+
         /// <summary>
         /// Set the custom properties.
         /// </summary>

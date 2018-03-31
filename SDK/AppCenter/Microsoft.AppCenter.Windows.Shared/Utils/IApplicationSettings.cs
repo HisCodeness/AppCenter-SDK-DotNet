@@ -10,5 +10,7 @@
         void SetValue(string key, object value);
         bool ContainsKey(string key);
         void Remove(string key);
+
+        void SetCustomBasePath(string path);
     }
 }

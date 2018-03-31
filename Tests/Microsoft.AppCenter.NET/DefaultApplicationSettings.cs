@@ -10,14 +10,14 @@ namespace Microsoft.AppCenter.Utils
     public class DefaultApplicationSettings : IApplicationSettings
     {
         private static readonly Dictionary<object, object> Settings = new Dictionary<object, object>();
-        
+
         public T GetValue<T>(string key, T defaultValue)
         {
             object result;
             var found = Settings.TryGetValue(key, out result);
             if (found)
             {
-                return (T) result;
+                return (T)result;
             }
             SetValue(key, defaultValue);
             return defaultValue;
@@ -40,6 +40,11 @@ namespace Microsoft.AppCenter.Utils
         public static void Reset()
         {
             Settings.Clear();
+        }
+
+        public void SetCustomBasePath(string path)
+        {
+            // No base path here
         }
 
         public static bool IsEmpty => Settings.Count == 0;

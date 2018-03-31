@@ -30,5 +30,10 @@ namespace Microsoft.AppCenter.Utils
         {
             ApplicationData.Current.LocalSettings.Values.Remove(key);
         }
+
+        public void SetCustomBasePath(string path)
+        {
+            // No base path in UWP
+        }
     }
 }

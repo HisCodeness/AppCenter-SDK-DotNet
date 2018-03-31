@@ -54,6 +54,11 @@ namespace Microsoft.AppCenter
             Debug.WriteLine(ErrorMessage);
         }
 
+        static void PlatformStart(string appSecret, string basePath, params Type[] services)
+        {
+            Debug.WriteLine(ErrorMessage);
+        }
+
         static void PlatformSetCustomProperties(CustomProperties customProperties)
         {
         }

@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using SQLite;
 using Microsoft.AppCenter.Ingestion.Models;
 using Microsoft.AppCenter.Ingestion.Models.Serialization;
+using System.IO;
 
 namespace Microsoft.AppCenter.Storage
 {
@@ -28,7 +29,7 @@ namespace Microsoft.AppCenter.Storage
         }
 
         private readonly IStorageAdapter _storageAdapter;
-        private const string Database = "Microsoft.AppCenter.Storage";
+        private static string Database = "Microsoft.AppCenter.Storage";
         private const string DbIdentifierDelimiter = "@";
 
         private readonly Dictionary<string, List<long>> _pendingDbIdentifierGroups = new Dictionary<string, List<long>>();

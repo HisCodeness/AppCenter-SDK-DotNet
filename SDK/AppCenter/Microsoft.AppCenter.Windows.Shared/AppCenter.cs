@@ -191,10 +191,18 @@ namespace Microsoft.AppCenter
         {
             lock (AppCenterLock)
             {
-                Instance.StartInstanceAndConfigure(appSecret, services);
+                Instance.StartInstanceAndConfigure(appSecret, string.Empty, services);
             }
         }
- 
+
+        static void PlatformStart(string appSecret, string basePath, params Type[] services)
+        {
+            lock (AppCenterLock)
+            {
+                Instance.StartInstanceAndConfigure(appSecret, basePath, services);
+            }
+        }
+
         // Atomically checks if the CorrelationId equals "testValue" and updates the value if true.
         // Returns "true" if value was changed. If not, the current value is assigned to setValue.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -383,10 +391,11 @@ namespace Microsoft.AppCenter
             AppCenterLog.Info(AppCenterLog.LogTag, $"'{service.GetType().Name}' service started.");
         }
 
-        public void StartInstanceAndConfigure(string appSecret, params Type[] services)
+        public void StartInstanceAndConfigure(string appSecret, string basePath, params Type[] services)
         {
             try
             {
+                _applicationSettings.SetCustomBasePath(basePath);
                 InstanceConfigure(appSecret);
                 StartInstance(services);
             }

@@ -251,7 +251,7 @@ namespace Microsoft.AppCenter.Test
         [TestMethod]
         public void StartNullServiceAndCorrectService()
         {
-            AppCenter.Start("app secret", null, typeof(MockAppCenterService));
+            AppCenter.Start("app secret", string.Empty, null, typeof(MockAppCenterService));
             MockAppCenterService.Instance.MockInstance.Verify(
                 service => service.OnChannelGroupReady(It.IsAny<IChannelGroup>(), It.IsAny<string>()), Times.Once());
         }

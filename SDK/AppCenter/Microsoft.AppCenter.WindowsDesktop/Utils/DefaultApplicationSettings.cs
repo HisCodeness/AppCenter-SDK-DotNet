@@ -12,11 +12,13 @@ namespace Microsoft.AppCenter.Utils
         private readonly object configLock = new object();
         private IDictionary<string, string> current;
 
+        private static string customBasePath;
+
         public DefaultApplicationSettings()
         {
             current = ReadAll();
         }
-        
+
         public T GetValue<T>(string key, T defaultValue = default(T))
         {
             lock (configLock)
@@ -59,6 +61,16 @@ namespace Microsoft.AppCenter.Utils
             }
         }
 
+        public void SetCustomBasePath(string path)
+        {
+            SetPath(path);
+        }
+
+        private static void SetPath(string path)
+        {
+            customBasePath = path;
+        }
+
         private void SaveValue(string key, string value)
         {
             lock (configLock)
@@ -85,8 +97,12 @@ namespace Microsoft.AppCenter.Utils
 
         private static Configuration OpenConfiguration()
         {
-            var location = Assembly.GetExecutingAssembly().Location;
-            var path = Path.Combine(Path.GetDirectoryName(location), "AppCenter.config");
+            string location;
+            if (string.IsNullOrWhiteSpace(customBasePath))
+                location = Assembly.GetExecutingAssembly().Location;
+            else
+                location = customBasePath;
+            var path = Path.Combine(location, "AppCenter.config");
             var executionFileMap = new ExeConfigurationFileMap { ExeConfigFilename = path };
             return ConfigurationManager.OpenMappedExeConfiguration(executionFileMap, ConfigurationUserLevel.None);
         }
