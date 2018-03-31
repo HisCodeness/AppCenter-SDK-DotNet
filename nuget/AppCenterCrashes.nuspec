@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-    <id>Microsoft.AppCenter.Crashes</id>
-    <title>App Center Crashes</title>
-    <authors>Microsoft</authors>
+    <id>Microsoft.AppCenter.Crashes.Unofficial</id>
+    <title>App Center Crashes Unofficial</title>
+    <authors>BARBE</authors>
     <owners>microsoft,appcenter</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <summary>Microsoft App Center Crashes package provides crash reporting capabilities for your mobile applications.</summary>
@@ -15,7 +15,7 @@
     <licenseUrl>https://aka.ms/vbgfx2</licenseUrl>
     <iconUrl>https://aka.ms/xhh7sr</iconUrl>
     <dependencies>
-      <dependency id="Microsoft.AppCenter" version="$version$" />
+      <dependency id="Microsoft.AppCenter.Unofficial" version="$version$" />
     </dependencies>
     <version>$version$</version>
   </metadata>

@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-    <id>Microsoft.AppCenter</id>
-    <title>App Center</title>
-    <authors>Microsoft</authors>
+    <id>Microsoft.AppCenter.Unofficial</id>
+    <title>App Center Unofficial</title>
+    <authors>BARBE</authors>
     <owners>microsoft,appcenter</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <summary>Microsoft App Center. Common package for every App Center service.</summary>
