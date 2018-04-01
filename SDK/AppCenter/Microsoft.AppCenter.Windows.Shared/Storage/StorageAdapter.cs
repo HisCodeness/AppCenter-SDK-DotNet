@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using SQLite;
@@ -10,9 +11,9 @@ namespace Microsoft.AppCenter.Storage
     {
         private readonly SQLiteAsyncConnection _dbConnection;
 
-        public StorageAdapter(string databasePath)
+        public StorageAdapter(string databasePath, string basePath)
         {
-            _dbConnection = new SQLiteAsyncConnection(databasePath);
+            _dbConnection = new SQLiteAsyncConnection(Path.Combine(basePath, databasePath));
         }
 
         public async Task CreateTableAsync<T>() where T : new()

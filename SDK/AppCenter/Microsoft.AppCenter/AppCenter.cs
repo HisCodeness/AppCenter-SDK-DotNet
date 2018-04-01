@@ -44,6 +44,11 @@ namespace Microsoft.AppCenter
             Debug.WriteLine(ErrorMessage);
         }
 
+        static void PlatformConfigure(string appSecret, string basePath)
+        {
+            Debug.WriteLine(ErrorMessage);
+        }
+
         static void PlatformStart(params Type[] services)
         {
             Debug.WriteLine(ErrorMessage);

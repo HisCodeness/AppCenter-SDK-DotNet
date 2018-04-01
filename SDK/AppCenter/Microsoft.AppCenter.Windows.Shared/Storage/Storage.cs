@@ -42,7 +42,7 @@ namespace Microsoft.AppCenter.Storage
         /// <summary>
         /// Creates an instance of Storage
         /// </summary>
-        public Storage() : this(new StorageAdapter(Database))
+        public Storage(string basePath) : this(new StorageAdapter(Database, basePath))
         {
         }
 

@@ -12,7 +12,7 @@ namespace Microsoft.AppCenter.Test.Channel
             _channelGroupMock = channelGroupMock;
         }
 
-        public IChannelGroup CreateChannelGroup(string appSecret)
+        public IChannelGroup CreateChannelGroup(string appSecret, string basePath)
         {
             return _channelGroupMock.Object;
         }

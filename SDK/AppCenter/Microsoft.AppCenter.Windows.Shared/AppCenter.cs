@@ -159,11 +159,16 @@ namespace Microsoft.AppCenter
 
         static void PlatformConfigure(string appSecret)
         {
+            PlatformConfigure(appSecret, string.Empty);
+        }
+
+        static void PlatformConfigure(string appSecret, string basePath)
+        {
             lock (AppCenterLock)
             {
                 try
                 {
-                    Instance.InstanceConfigure(appSecret);
+                    Instance.InstanceConfigure(appSecret, basePath);
                 }
                 catch (AppCenterException ex)
                 {
@@ -301,7 +306,7 @@ namespace Microsoft.AppCenter
         }
 
         // Internal for testing
-        internal void InstanceConfigure(string appSecretOrSecrets)
+        internal void InstanceConfigure(string appSecretOrSecrets, string basePath)
         {
             if (_instanceConfigured)
             {
@@ -312,7 +317,7 @@ namespace Microsoft.AppCenter
 
             // If a factory has been supplied, use it to construct the channel group - this is designed for testing.
             // Normal scenarios will use new ChannelGroup(string).
-            _channelGroup = _channelGroupFactory?.CreateChannelGroup(_appSecret) ?? new ChannelGroup(_appSecret);
+            _channelGroup = _channelGroupFactory?.CreateChannelGroup(_appSecret, basePath) ?? new ChannelGroup(_appSecret, basePath);
             ApplicationLifecycleHelper.Instance.UnhandledExceptionOccurred += (sender, e) => _channelGroup.ShutdownAsync();
             _channel = _channelGroup.AddChannel(ChannelName, Constants.DefaultTriggerCount, Constants.DefaultTriggerInterval,
                                                 Constants.DefaultTriggerMaxParallelRequests);
@@ -396,7 +401,7 @@ namespace Microsoft.AppCenter
             try
             {
                 _applicationSettings.SetCustomBasePath(basePath);
-                InstanceConfigure(appSecret);
+                InstanceConfigure(appSecret, basePath);
                 StartInstance(services);
             }
             catch (AppCenterException ex)

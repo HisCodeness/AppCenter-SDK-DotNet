@@ -22,13 +22,13 @@ namespace Microsoft.AppCenter.Channel
         public event EventHandler<SentLogEventArgs> SentLog;
         public event EventHandler<FailedToSendLogEventArgs> FailedToSendLog;
 
-        public ChannelGroup(string appSecret)
-            : this(appSecret, null)
+        public ChannelGroup(string appSecret, string basePath)
+            : this(appSecret, basePath, null)
         {
         }
 
-        public ChannelGroup(string appSecret, IHttpNetworkAdapter httpNetwork)
-            : this(DefaultIngestion(httpNetwork), DefaultStorage(), appSecret)
+        public ChannelGroup(string appSecret, string basePath, IHttpNetworkAdapter httpNetwork)
+            : this(DefaultIngestion(httpNetwork), DefaultStorage(basePath), appSecret)
         {
         }
 
@@ -121,9 +121,9 @@ namespace Microsoft.AppCenter.Channel
             return new NetworkStateIngestion(new RetryableIngestion(new IngestionHttp(httpNetwork ?? new HttpNetworkAdapter())));
         }
 
-        private static IStorage DefaultStorage()
+        private static IStorage DefaultStorage(string basePath)
         {
-            return new Storage.Storage();
+            return new Storage.Storage(basePath);
         }
 
         private void AnyChannelEnqueuingLog(object sender, EnqueuingLogEventArgs e)

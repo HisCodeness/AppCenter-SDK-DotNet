@@ -2,6 +2,6 @@
 {
     public interface IChannelGroupFactory
     {
-        IChannelGroup CreateChannelGroup(string appSecret);
+        IChannelGroup CreateChannelGroup(string appSecret, string basePath);
     }
 }
